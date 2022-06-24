@@ -26,19 +26,30 @@ class DrinksListPage extends StatelessWidget {
               print(value);
             },
           ),
-          drinkListWidget(drinksViewModel: drinksViewModel)
+          drinkListWidget(drinksViewModel: drinksViewModel, context: context)
         ],
       ),
     );
   }
 
 //==================================== build helpers ===========================
-  drinkListWidget({required DrinksViewModel drinksViewModel}) {
+  drinkListWidget({required DrinksViewModel drinksViewModel, context}) {
     if (drinksViewModel.loading) {
-      return Container();
+      return Center(
+        child: CircularProgressIndicator(
+          color: Colors.blue,
+        ),
+      );
     }
     if (drinksViewModel.drinkerror.code != 000) {
-      return Text("${drinksViewModel.drinkerror?.errormessage}");
+      return Center(
+        child: Container(
+            margin: EdgeInsets.all(50),
+            child: Text(
+              "${drinksViewModel.drinkerror.errormessage}",
+              style: TextStyle(fontSize: 18),
+            )),
+      );
     }
     return Expanded(
         child: ListView.separated(

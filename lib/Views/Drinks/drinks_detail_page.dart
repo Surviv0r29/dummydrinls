@@ -51,7 +51,7 @@ class DrinksDetailPage extends StatelessWidget {
                 style: TextStyle(fontSize: 16),
               ),
               Text(
-                "Description: \nDutch:${drink.strInstructionsDe} \n English:${drink.strInstructionsEs} \n France:${drink.strInstructionsFr} \n Italy ${drink.strInstructionsIt}",
+                "Description: \nDutch:${drink.strInstructionsDe ?? ""} \n English:${drink.strInstructionsEs ?? ""} \n France:${drink.strInstructionsFr ?? ""} \n Italy ${drink.strInstructionsIt ?? ""}",
                 style: TextStyle(fontSize: 16),
               ),
             ],

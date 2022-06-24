@@ -7,13 +7,17 @@ import 'package:dummydrinks/utils/constant.dart';
 
 class DrinksRqpository {
   static Future<Object> getDrinkslist({String searchtext = ""}) async {
-    var response = await ApiHandller.fetchGet(url: BASE_URL + searchtext);
-    print("The response is ${response.data}");
-    if (response.statusCode == SUCCESS) {
-      return Success(
-          code: response.statusCode, data: drinkListFromJson(response.data));
-    } else {
-      return Failure(code: response.statusCode);
+    try {
+      var response = await ApiHandller.fetchGet(url: BASE_URL + searchtext);
+
+      if (response.statusCode == SUCCESS) {
+        return Success(
+            code: response.statusCode, data: drinkListFromJson(response.data));
+      } else {
+        return Failure(code: response.statusCode);
+      }
+    } catch (e) {
+      return Failure(code: 101);
     }
   }
 }
